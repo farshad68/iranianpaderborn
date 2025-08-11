@@ -4,10 +4,7 @@ layout: default_fa
 
 <div class="container">
 
-  <!-- Header Image -->
-  <header class="site-header my-4">
-    <img src="{{ '/assets/img/header1920x600.jpg' | relative_url }}" alt="Header Photo" class="img-fluid w-100 rounded shadow-sm" />
-  </header>
+
 
 
   <!-- Business Categories Section -->
@@ -41,7 +38,7 @@ layout: default_fa
       <div class="border rounded p-3 bg-light h-100 d-flex flex-column">
         <h2 class="mb-3">{{ "کسب و کارها"  }}</h2>
         <ul class="list-unstyled flex-grow-1">
-          {% for item in site.Geschaefte_fa %}
+          {% for item in site.geschaefte_fa %}
           <li><a href="{{ item.url }}">{{ item.name }}</a></li>
           {% endfor %}
         </ul>

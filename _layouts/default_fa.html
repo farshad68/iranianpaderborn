@@ -18,13 +18,9 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
-    html[lang="fa"] {
+    html {
       direction: rtl;
       font-family: 'Vazir', Tahoma, sans-serif;
-    }
-    html[lang="de"] {
-      direction: ltr;
-      font-family: 'Open Sans', Arial, sans-serif;
     }
 
     .site-header-bar {
@@ -61,7 +57,13 @@
   {% include header_fa.html %}
   
   <main class="content">
+    <div class="container">
+      <!-- Header Image -->
+      <header class="site-header my-4">
+        <img src="{{ '/assets/img/header1920x600.jpg' | relative_url }}" alt="Header Photo" class="img-fluid w-100 rounded shadow-sm" />
+      </header>
     {{ content }}
+    </div>
   </main>
 
   {% include footer_fa.html %}

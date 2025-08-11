@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+
+<section class="container mt-5">
+  <h1 class="mb-4">Blog – Neueste Beiträge</h1>
+
+  {% if site.posts_de and site.posts_de.size > 0 %}
+  {% assign posts_sorted = site.posts_de | sort: "date" | reverse %}
+  <ul class="list-unstyled">
+    {% for post in posts_sorted %}
+    <li class="mb-3">
+      <h3 class="mb-1">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h3>
+      <small class="text-muted">
+        {{ post.date | date: "%d.%m.%Y" }}
+      </small>
+      {% if post.excerpt %}
+      <p class="mt-1">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Es sind derzeit keine Blogbeiträge vorhanden.</p>
+  {% endif %}
+</section>
+

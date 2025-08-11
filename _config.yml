@@ -19,32 +19,35 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Iranian Paderborn
-email: your-email@example.com
+email:
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+  Die Website iranianpaderborn.de ist eine neu gestartete Online-Plattform, die Informationen, Kontakte und Angebote rund um die iranische Gemeinschaft in Paderborn sammelt und veröffentlicht – von Unternehmen und Dienstleistungen bis hin zu Kultur, Veranstaltungen und hilfreichen Tipps für Neuankömmlinge.
+baseurl: ""
+url: "iranianpaderborn.de"
+github_username:  farshad68
 
 collections:
-  businesses:
-    output: true
-    permalink: /businesses/:categories/:name/
   doctors:
     output: true
     permalink: /doctors/:name/
-  services:
-    output: true
-    permalink: /services/:categories/:name/
   dienstleistungen_de:
     output: true
     permalink: /de/dienstleistungen/:name/
   dienstleistungen_fa:
     output: true
     permalink: /fa/dienstleistungen/:name/
+  geschaefte_de:
+    output: true
+    permalink: /de/geschaefte/:name/
+  geschaefte_fa:
+    output: true
+    permalink: /fa/geschaefte/:name/
+  posts_de:
+    output: true
+    permalink: /de/blog/:title
+  posts_fa:
+    output: true
+    permalink: /fa/blog/:title
 # Build settings
 theme: minima
 plugins:

@@ -18,11 +18,8 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
-    html[lang="fa"] {
-      direction: rtl;
-      font-family: 'Vazir', Tahoma, sans-serif;
-    }
-    html[lang="de"] {
+
+    html {
       direction: ltr;
       font-family: 'Open Sans', Arial, sans-serif;
     }
@@ -62,7 +59,13 @@
 
   
   <main class="content">
+    <div class="container">
+    <!-- Header Image -->
+    <header class="site-header my-4">
+      <img src="{{ '/assets/img/header1920x600.jpg' | relative_url }}" alt="Header Photo" class="img-fluid w-100 rounded shadow-sm" />
+    </header>
     {{ content }}
+      </div>
   </main>
 
 

@@ -1,29 +1,15 @@
 ---
-layout: post
-title:  "Welcome to Jekyll!"
-date:   2025-08-05 14:53:59 +0200
-categories: jekyll update
+layout: post_fa
+title: "ایرانیان در پادربورن – پلتفرم ارتباطی جامعه ایرانی"
+date: 2025-08-05 14:53:59 +0200
+categories: blog post
+lang: fa
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-Jekyll requires blog post files to be named according to the following format:
+## ایرانیان در پادربورن – پلتفرم ارتباطی جامعه ایرانی
 
-`YEAR-MONTH-DAY-title.MARKUP`
+وب‌سایت [iranianpaderborn.de](https://iranianpaderborn.de) به تازگی فعالیت خود را آغاز کرده و هدف آن ایجاد یک **مرجع آنلاین برای جامعه ایرانیان در پادربورن** است. این سایت اطلاعات و راهنمایی‌های متنوعی را درباره **کسب‌وکارها، خدمات، پزشکان، رویدادها و فعالیت‌های فرهنگی ایرانیان** این شهر گردآوری و منتشر می‌کند.
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+هدف اصلی این پلتفرم، **اتصال و همبستگی** بین ایرانیان، تازه‌واردان، دانشجویان و خانواده‌ها است تا بتوانند راحت‌تر با یکدیگر و با خدمات محلی ارتباط برقرار کنند. محتوای سایت به صورت **دو زبانه (فارسی و آلمانی)** ارائه می‌شود تا دسترسی برای همه آسان باشد.
 
-Jekyll also offers powerful support for code snippets:
-
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+راه‌اندازی این وب‌سایت گامی مهم برای **شناخته‌شدن، هم‌افزایی و تقویت حضور جامعه ایرانی** در پادربورن محسوب می‌شود.

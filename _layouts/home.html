@@ -3,13 +3,6 @@ layout: default
 ---
 
 <div class="container">
-
-  <!-- Header Image -->
-  <header class="site-header my-4">
-    <img src="{{ '/assets/img/header1920x600.jpg' | relative_url }}" alt="Header Photo" class="img-fluid w-100 rounded shadow-sm" />
-  </header>
-
-
   <!-- Business Categories Section -->
   <div class="row">
     <div class="col-md-4 mb-4">
@@ -33,7 +26,7 @@ layout: default
           <li><a href="{{ item.url }}">{{ item.name }}</a></li>
           {% endfor %}
         </ul>
-        <a href="/de/dienstleistungen/" class="btn btn-primary mt-auto align-self-start"> Alle ansehen</a>
+        <a href="/de/doctors/" class="btn btn-primary mt-auto align-self-start"> Alle ansehen</a>
       </div>
     </div>
 
@@ -41,11 +34,11 @@ layout: default
       <div class="border rounded p-3 bg-light h-100 d-flex flex-column">
         <h2 class="mb-3">{{ "Geschäfte" | capitalize }}</h2>
         <ul class="list-unstyled flex-grow-1">
-          {% for item in site.Geschaefte_de %}
+          {% for item in site.geschaefte_de %}
           <li><a href="{{ item.url }}">{{ item.name }}</a></li>
           {% endfor %}
         </ul>
-        <a href="/de/dienstleistungen/" class="btn btn-primary mt-auto align-self-start"> Alle ansehen</a>
+        <a href="/de/geschaefte/" class="btn btn-primary mt-auto align-self-start"> Alle ansehen</a>
       </div>
     </div>
   </div>
@@ -54,7 +47,7 @@ layout: default
   <section class="blog-posts mt-5">
     <h2 class="mb-3"> Neueste Blogbeiträge</h2>
     <ul class="list-unstyled">
-      {% assign posts_filtered = site.posts_de | slice: 0,5 %}
+      {% assign posts_filtered = site.posts_de | sort: "date" | reverse | slice: 0,5 %}
       {% for post in posts_filtered %}
         <li class="mb-2">
           <a href="{{ post.url }}">{{ post.title }}</a><br />
@@ -62,7 +55,7 @@ layout: default
         </li>
       {% endfor %}
     </ul>
-    <a href="/blog/" class="btn btn-outline-primary mt-3">Alle Beiträge anzeigen</a>
+    <a href="/de/blog/" class="btn btn-outline-primary mt-3">Alle Beiträge anzeigen</a>
   </section>
 
 </div>
