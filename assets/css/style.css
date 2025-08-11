@@ -1,0 +1,14 @@
+.site-header img {
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.site-footer {
+  background: #222;
+  color: #eee;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
