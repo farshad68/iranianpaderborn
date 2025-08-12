@@ -23,7 +23,7 @@ layout: default
         <h2 class="mb-3">{{ "Ärzte" | capitalize }}</h2>
         <ul class="list-unstyled flex-grow-1">
           {% for item in site.doctors_de %}
-          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+          <li><a href="{{ item.url }}">{{ item.name }} ({{item.category}})</a></li>
           {% endfor %}
         </ul>
         <a href="/de/doctors/" class="btn btn-primary mt-auto align-self-start"> Alle ansehen</a>
@@ -35,7 +35,7 @@ layout: default
         <h2 class="mb-3">{{ "Geschäfte" | capitalize }}</h2>
         <ul class="list-unstyled flex-grow-1">
           {% for item in site.geschaefte_de %}
-          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+          <li><a href="{{ item.url }}">{{ item.name }} ({{item.category}})</a></li>
           {% endfor %}
         </ul>
         <a href="/de/geschaefte/" class="btn btn-primary mt-auto align-self-start"> Alle ansehen</a>

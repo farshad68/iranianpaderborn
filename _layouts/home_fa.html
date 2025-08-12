@@ -27,7 +27,7 @@ layout: default_fa
         <h2 class="mb-3">{{ "پزشک ها"  }}</h2>
         <ul class="list-unstyled flex-grow-1">
           {% for item in site.doctors_fa %}
-          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+          <li><a href="{{ item.url }}">{{ item.name }} ({{item.category}})</a></li>
           {% endfor %}
         </ul>
         <a href="/fa/dienstleistungen/" class="btn btn-primary mt-auto align-self-start"> مشاهده همه</a>
@@ -39,7 +39,7 @@ layout: default_fa
         <h2 class="mb-3">{{ "کسب و کارها"  }}</h2>
         <ul class="list-unstyled flex-grow-1">
           {% for item in site.geschaefte_fa %}
-          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+          <li><a href="{{ item.url }}">{{ item.name }} ({{item.category}})</a></li>
           {% endfor %}
         </ul>
         <a href="/fa/dienstleistungen/" class="btn btn-primary mt-auto align-self-start"> مشاهده همه</a>
