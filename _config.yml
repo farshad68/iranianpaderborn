@@ -27,9 +27,6 @@ url: "iranianpaderborn.de"
 github_username:  farshad68
 
 collections:
-  doctors:
-    output: true
-    permalink: /doctors/:name/
   dienstleistungen_de:
     output: true
     permalink: /de/dienstleistungen/:name/
@@ -48,6 +45,12 @@ collections:
   posts_fa:
     output: true
     permalink: /fa/blog/:title
+  doctors_de:
+    output: true
+    permalink: /de/doctors/:name/
+  doctors_fa:
+    output: true
+    permalink: /fa/doctors/:name/
 # Build settings
 theme: minima
 plugins:
