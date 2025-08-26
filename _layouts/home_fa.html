@@ -51,7 +51,7 @@ layout: default_fa
   <section class="blog-posts mt-5">
     <h2 class="mb-3"> جدیدترین پست ها</h2>
     <ul class="list-unstyled">
-      {% assign posts_filtered = site.posts_fa | slice: 0,5 %}
+      {% assign posts_filtered = site.posts_fa | sort: 'date' | slice: 0,5 %}
       {% for post in posts_filtered %}
       <li class="mb-2">
         <a href="{{ post.url }}">{{ post.title }}</a><br />
