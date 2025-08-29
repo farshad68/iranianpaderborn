@@ -125,8 +125,7 @@ https://www.paderborn.de/microsite/wahlen/wahlen/integrationsratswahlen-allgemei
 
 ## نامزدهای انتخابات چه کسانی هستند؟
 
-در حال حاضر، فهرست نامزدهای انتخابات شورای ادغام هنوز منتشر نشده است. شهر پادربورن این فهرست را نزدیک به زمان انتخابات اعلام خواهد کرد. برای اطلاع از آخرین اطلاعات، توصیه می‌شود وب‌سایت شهرداری را بررسی کنید یا از طریق راه‌های تماس بالا پیگیری نمایید.
-
+[فهرست نامزدهای انتخابات شورای ادغام .](https://amtsblatt.paderborn.de/sdnetrim/UGhVM0hpd2NXNFdFcExjZYET_Z7M0cTVoeFHleI4-ikZuQXKco130Nxm4vdaK_SM/Bekanntmachung_68-2025.pdf)
 ---
 
 جمع آوری : [Farshad Afshari](https://farshadafshari.com/)
