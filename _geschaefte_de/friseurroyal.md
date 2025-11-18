@@ -1,5 +1,5 @@
 ---
-layout: default_de
+layout: default
 title: Friseur Royal
 name: Friseur Royal
 category: Friseur
