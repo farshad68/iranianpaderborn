@@ -16,3 +16,6 @@ Roya Kebab Haus ist ein gemütliches Schnellrestaurant in Paderborn, bekannt fü
 
 ##  Kontakt
 - **Adresse:** Königstraße 58, 33098 Paderborn
+
+
+🗺️ [In der Karte ansehen](https://maps.app.goo.gl/humH4VZA86SFYG2z9)
