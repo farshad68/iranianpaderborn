@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Alireza Haghiashtiani
-name: Alireza Haghiashtiani
+title: Herr Dr Alireza Haghiashtiani
+name: Herr Dr Alireza Haghiashtiani
 category: hno
 selected_option: true
 lang: de
