@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: default_fa
 title: Frau Dr Lilly Elahi
 name: Frau Dr Lilly Elahi
 category: دکتر پوست
