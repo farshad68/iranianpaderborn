@@ -1,5 +1,6 @@
 ---
 layout: default
+lang: de
 title: paderdruck
 category: drucken
 name: paderdruck

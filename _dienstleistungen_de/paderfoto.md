@@ -1,5 +1,6 @@
 ---
 layout: default
+lang: de
 title: Paderfoto
 category: fotografie
 name: paderfoto

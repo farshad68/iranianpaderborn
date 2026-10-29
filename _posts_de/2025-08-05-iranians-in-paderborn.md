@@ -1,5 +1,6 @@
 ---
 layout: post_de
+lang: de
 title: "Iranians in Paderborn – Vernetzungsplattform für die iranische Gemeinschaft"
 date: 2025-08-05 14:53:59 +0200
 categories: blog post
