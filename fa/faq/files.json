@@ -1,0 +1,6 @@
+---
+layout: null
+permalink: /fa/faq/files.json
+---
+{%- assign faq_files = site.static_files | where_exp: "f", "f.path contains '/assets/faq/'" | where: "extname", ".jsonl" -%}
+[{% for f in faq_files %}"{{ f.path | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}]

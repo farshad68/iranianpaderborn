@@ -4,7 +4,7 @@ title: Herr Hassan Mehdian
 name: Herr Hassan Mehdian
 category: Zahnarzt
 selected_option: true
-lang: fa
+lang: de
 ---
 
 # Zahnarzt Herr Hassan Mehdian

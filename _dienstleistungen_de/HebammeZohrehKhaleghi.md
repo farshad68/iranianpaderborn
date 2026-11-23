@@ -1,5 +1,6 @@
 ---
 layout: default
+lang: de
 title: Hebamme Zohreh Khaleghi
 category: hebamme
 name: Hebamme Zohreh Khaleghi

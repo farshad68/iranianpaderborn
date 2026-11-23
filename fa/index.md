@@ -1,6 +1,6 @@
 ---
 layout: home_fa
 title: Startseite
-lang: de
+lang: fa
 ---
 خوش آمدید
