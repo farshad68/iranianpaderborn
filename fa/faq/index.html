@@ -1,0 +1,241 @@
+---
+layout: default_fa
+title: پرسش‌های متداول
+lang: fa
+permalink: /fa/faq/
+---
+<style>
+  .faq-search { position: sticky; top: 0; z-index: 10; background: #fff; padding: .75rem 0; }
+  .faq-item summary { cursor: pointer; font-weight: 600; list-style: none; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::before { content: "◂"; display: inline-block; margin-left: .5rem; transition: transform .2s; }
+  .faq-item[open] summary::before { transform: rotate(-90deg); }
+  .faq-answer { white-space: pre-line; margin-top: .75rem; line-height: 1.9; }
+  .faq-answer a { word-break: break-all; }
+  .faq-meta { font-size: .8rem; color: #6c757d; }
+</style>
+
+<h1 class="mb-3">پرسش‌های متداول</h1>
+
+<div class="alert alert-warning" role="alert">
+  <strong>توجه:</strong> این پرسش و پاسخ‌ها خلاصه‌ای از گفتگوهای کاربران در گروه‌ها و انجمن‌های اینترنتی هستند و توسط کارشناس بررسی نشده‌اند.
+  ممکن است برخی پاسخ‌ها نادرست، ناقص یا قدیمی باشند (به تاریخ هر مورد توجه کنید). ایرانیان پادربورن هیچ مسئولیتی در قبال صحت این اطلاعات یا پیامدهای استفاده از آن‌ها نمی‌پذیرد.
+  لطفاً پیش از هر تصمیمی، اطلاعات را از منابع رسمی (دانشگاه، اداره‌ها، سفارت و ...) بررسی کنید.
+</div>
+
+<div class="faq-search">
+  <div class="row g-2">
+    <div class="col-md-8">
+      <input id="faq-q" type="search" class="form-control form-control-lg" placeholder="جستجو… (مثلاً: پذیرش، ویزا، بیمه)" autocomplete="off">
+    </div>
+    <div class="col-md-4">
+      <select id="faq-cat" class="form-select form-select-lg">
+        <option value="">همه دسته‌ها</option>
+      </select>
+    </div>
+  </div>
+  <div id="faq-status" class="faq-meta mt-2">در حال بارگذاری…</div>
+</div>
+
+<div id="faq-list" class="mt-3"></div>
+<div class="text-center my-3">
+  <button id="faq-more" class="btn btn-outline-secondary d-none">نمایش بیشتر</button>
+</div>
+
+<script>
+(function () {
+  var MANIFEST = "{{ '/fa/faq/files.json' | relative_url }}";
+  var PAGE_SIZE = 50;
+
+  // Persian labels for category/subcategory values. Add new ones here;
+  // anything missing is shown as-is.
+  var LABELS = {
+    university: "دانشگاه", admission: "پذیرش", study: "تحصیل", studies: "تحصیل",
+    language: "زبان", language_course: "کلاس زبان", exam: "امتحان", exams: "امتحان‌ها",
+    visa: "ویزا", embassy: "سفارت", residence: "اقامت", residence_permit: "اجازه اقامت",
+    immigration: "مهاجرت", citizenship: "تابعیت", registration: "ثبت‌نام / آنملدونگ",
+    housing: "مسکن", apartment: "آپارتمان", dormitory: "خوابگاه", wg: "خانه اشتراکی",
+    work: "کار", job: "کار", jobs: "کار", job_search: "کاریابی", internship: "کارآموزی",
+    student_job: "کار دانشجویی", minijob: "مینی‌جاب",
+    insurance: "بیمه", health: "سلامت", health_insurance: "بیمه درمانی", doctor: "پزشک",
+    doctors: "پزشکان", medical: "پزشکی", pharmacy: "داروخانه",
+    bank: "بانک", banking: "بانک", finance: "امور مالی", money: "پول", blocked_account: "حساب مسدودی",
+    tax: "مالیات", taxes: "مالیات",
+    transport: "حمل و نقل", transportation: "حمل و نقل", travel: "سفر", driving: "رانندگی",
+    driving_license: "گواهینامه رانندگی", car: "خودرو", ticket: "بلیت",
+    shopping: "خرید", food: "غذا", groceries: "خرید خوراکی", restaurant: "رستوران",
+    family: "خانواده", children: "کودکان", kids: "کودکان", school: "مدرسه", kindergarten: "مهدکودک",
+    marriage: "ازدواج", pregnancy: "بارداری",
+    community: "جامعه ایرانی", events: "رویدادها", event: "رویداد", culture: "فرهنگ",
+    social: "اجتماعی", religion: "مذهب", sports: "ورزش", sport: "ورزش",
+    documents: "مدارک", translation: "ترجمه", authorities: "ادارات", bureaucracy: "امور اداری",
+    legal: "حقوقی", law: "قانون", lawyer: "وکیل",
+    phone: "تلفن", internet: "اینترنت", mobile: "موبایل", contract: "قرارداد",
+    city: "شهر", paderborn: "پادربورن", arrival: "ورود", moving: "اسباب‌کشی",
+    other: "سایر", general: "عمومی", misc: "متفرقه", miscellaneous: "متفرقه"
+  };
+  function label(v) {
+    if (!v) return "";
+    var k = String(v).trim().toLowerCase().replace(/[\s-]+/g, "_");
+    return LABELS[k] || v;
+  }
+
+  var items = [];
+  var filtered = [];
+  var shown = 0;
+
+  var $q = document.getElementById("faq-q");
+  var $cat = document.getElementById("faq-cat");
+  var $list = document.getElementById("faq-list");
+  var $status = document.getElementById("faq-status");
+  var $more = document.getElementById("faq-more");
+
+  // Make Persian/Arabic variants and digits compare equal, drop diacritics and ZWNJ.
+  function normalize(s) {
+    return String(s || "")
+      .toLowerCase()
+      .replace(/[يى]/g, "ی")          // ي ى -> ی
+      .replace(/ك/g, "ک")                   // ك -> ک
+      .replace(/[أإآ]/g, "ا")     // أ إ آ -> ا
+      .replace(/ة/g, "ه")                   // ة -> ه
+      .replace(/[ً-ٰٟ]/g, "")          // harakat
+      .replace(/[۰-۹]/g, function (d) { return String(d.charCodeAt(0) - 0x06F0); })
+      .replace(/[٠-٩]/g, function (d) { return String(d.charCodeAt(0) - 0x0660); })
+      .replace(/[‌‍‏‎]/g, " ")    // ZWNJ etc. -> space
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function parseJsonl(text, file) {
+    var out = [];
+    text.split(/\r?\n/).forEach(function (line, i) {
+      line = line.trim();
+      if (!line) return;
+      try {
+        var o = JSON.parse(line);
+        if (!o || !o.question) return;
+        o._search = normalize([o.question, o.answer, o.category, o.subcategory, label(o.category), label(o.subcategory)].join(" "));
+        out.push(o);
+      } catch (e) {
+        console.warn("FAQ: bad JSON in " + file + " line " + (i + 1), e);
+      }
+    });
+    return out;
+  }
+
+  // Render text safely, turning URLs into links.
+  function appendLinkified(el, text) {
+    var re = /(https?:\/\/[^\s)]+)/g, last = 0, m;
+    text = String(text || "");
+    while ((m = re.exec(text))) {
+      var url = m[1].replace(/[.,،;:]+$/, "");
+      el.appendChild(document.createTextNode(text.slice(last, m.index)));
+      var a = document.createElement("a");
+      a.href = url; a.textContent = url; a.target = "_blank"; a.rel = "noopener nofollow";
+      el.appendChild(a);
+      last = m.index + url.length;
+      re.lastIndex = last;
+    }
+    el.appendChild(document.createTextNode(text.slice(last)));
+  }
+
+  function renderItem(o) {
+    var d = document.createElement("details");
+    d.className = "faq-item card card-body mb-2";
+
+    var s = document.createElement("summary");
+    s.textContent = o.question;
+    d.appendChild(s);
+
+    var meta = document.createElement("div");
+    meta.className = "faq-meta mt-2";
+    [o.category, o.subcategory].forEach(function (c) {
+      if (!c) return;
+      var b = document.createElement("span");
+      b.className = "badge bg-secondary ms-1";
+      b.textContent = label(c);
+      meta.appendChild(b);
+    });
+    if (o.date) {
+      var dt = document.createElement("span");
+      dt.className = "ms-2";
+      dt.textContent = o.date;
+      meta.appendChild(dt);
+    }
+    d.appendChild(meta);
+
+    var ans = document.createElement("div");
+    ans.className = "faq-answer";
+    appendLinkified(ans, o.answer);
+    d.appendChild(ans);
+    return d;
+  }
+
+  function showMore() {
+    var frag = document.createDocumentFragment();
+    var end = Math.min(shown + PAGE_SIZE, filtered.length);
+    for (var i = shown; i < end; i++) frag.appendChild(renderItem(filtered[i]));
+    $list.appendChild(frag);
+    shown = end;
+    $more.classList.toggle("d-none", shown >= filtered.length);
+  }
+
+  function apply() {
+    var terms = normalize($q.value).split(" ").filter(Boolean);
+    var cat = $cat.value;
+    filtered = items.filter(function (o) {
+      if (cat && o.category !== cat) return false;
+      return terms.every(function (t) { return o._search.indexOf(t) !== -1; });
+    });
+    $list.innerHTML = "";
+    shown = 0;
+    $status.textContent = filtered.length + " مورد از " + items.length + " پرسش";
+    if (!filtered.length) {
+      $list.innerHTML = '<p class="text-muted">موردی پیدا نشد.</p>';
+      $more.classList.add("d-none");
+      return;
+    }
+    showMore();
+    if (terms.length && filtered.length <= 3) {
+      $list.querySelectorAll("details").forEach(function (d) { d.open = true; });
+    }
+  }
+
+  var timer;
+  $q.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(apply, 150); });
+  $cat.addEventListener("change", apply);
+  $more.addEventListener("click", showMore);
+
+  // Allow linking to a search: /fa/faq/?q=ویزا
+  var initialQ = new URLSearchParams(location.search).get("q");
+  if (initialQ) $q.value = initialQ;
+
+  fetch(MANIFEST)
+    .then(function (r) { return r.json(); })
+    .then(function (files) {
+      return Promise.all(files.map(function (f) {
+        return fetch(f)
+          .then(function (r) { return r.ok ? r.text() : ""; })
+          .then(function (t) { return parseJsonl(t, f); })
+          .catch(function () { return []; });
+      }));
+    })
+    .then(function (lists) {
+      items = [].concat.apply([], lists);
+      var cats = {};
+      items.forEach(function (o) { if (o.category) cats[o.category] = true; });
+      Object.keys(cats).sort(function (a, b) {
+        return label(a).localeCompare(label(b), "fa");
+      }).forEach(function (c) {
+        var opt = document.createElement("option");
+        opt.value = c; opt.textContent = label(c);
+        $cat.appendChild(opt);
+      });
+      apply();
+    })
+    .catch(function (e) {
+      console.error(e);
+      $status.textContent = "خطا در بارگذاری پرسش‌ها.";
+    });
+})();
+</script>
